@@ -56,8 +56,10 @@ try {
   process.exit(1);
 }
 
+
+
 app.get("/check", auth, (req, res, next) => {
-  res.send(req.cookies.jwToken);
+  res.send("Server is running");
 });
 
 app.get("/verifyUser", async (req, res) => {
