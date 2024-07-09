@@ -59,8 +59,13 @@ try {
 
 
 app.get("/", (req, res) => {
+  res.send("Server is running on");
+});
+
+app.get("/check", (req, res) => {
   res.send("Server is running");
 });
+
 
 app.get("/verifyUser", async (req, res) => {
   const token = req.cookies.jwToken;
