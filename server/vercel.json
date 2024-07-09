@@ -12,10 +12,6 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://one-stop-client-one.vercel.app"
-        },
-        {
           "key": "Access-Control-Allow-Credentials",
           "value": "true"
         },
