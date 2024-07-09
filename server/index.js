@@ -31,14 +31,34 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// https://one-stop-client-one.vercel.app
+// // https://one-stop-client-one.vercel.app
+// const corsOptions = {
+//   origin: "https://one-stop-client-one.vercel.app",
+//   credentials: true,
+// };
+
 const corsOptions = {
   origin: "https://one-stop-client-one.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
+app.options("*", cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+  next();
+});
 app.use(cors(corsOptions));
 app.use("/api/auth", loginRoutes);
 app.use("/api/v1", profileRoutes);
@@ -90,3 +110,5 @@ app.get("/verifyUser", async (req, res) => {
     res.status(500).json({ error: err });
   }
 });
+
+export default index
