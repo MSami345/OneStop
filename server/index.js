@@ -31,8 +31,9 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// https://one-stop-client-one.vercel.app
 const corsOptions = {
-  origin: process.env.Cors_URL,
+  origin: "https://one-stop-client-one.vercel.app",
   credentials: true,
 };
 
@@ -56,8 +57,6 @@ try {
   process.exit(1);
 }
 
-
-
 app.get("/", (req, res) => {
   res.send("Server is running on");
 });
@@ -65,7 +64,6 @@ app.get("/", (req, res) => {
 app.get("/check", (req, res) => {
   res.send("Server is running");
 });
-
 
 app.get("/verifyUser", async (req, res) => {
   const token = req.cookies.jwToken;
